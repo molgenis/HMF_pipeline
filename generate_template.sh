@@ -16,23 +16,29 @@ then
      rm .compute.properties
 fi
 
-mkdir -p ${WORKDIR}/generatedscripts/${PROJECT}/run_${RUNNUMBER}/
+mkdir -p ${WORKDIR}/generatedscripts/
 
-if [ -f ${WORKDIR}/generatedscripts/${PROJECT}/run_${RUNNUMBER}/out.csv  ];
+if [ -f ${WORKDIR}/generatedscripts/parameters_converted.csv  ];
 then
-        rm -rf ${WORKDIR}/generatedscripts/${PROJECT}/run_${RUNNUMBER}/out.csv
+        rm -rf ${WORKDIR}/generatedscripts/parameters_converted.csv
+fi
+
+if [ -f ${WORKDIR}/generatedscripts/${PROJECT}_converted.csv  ];
+then
+    rm -rf ${WORKDIR}/generatedscripts/${PROJECT}_converted.csv
 fi
 
 perl ${GITHUBDIR}/convertParametersGitToMolgenis.pl ${GITHUBDIR}/parameters.csv > \
-${WORKDIR}/generatedscripts/${PROJECT}/run${RUNNUMBER}/parameters_converted.csv
+${WORKDIR}/generatedscripts/parameters_converted.csv
 
-perl ${GITHUBDIR}/convertParametersGitToMolgenis.pl ${WORKDIR}/${PROJECT}.csv > \
-${WORKDIR}/generatedscripts/${PROJECT}/run${RUNNUMBER}/${PROJECT}_converted.csv
+#perl ${GITHUBDIR}/convertParametersGitToMolgenis.pl ${WORKDIR}/${PROJECT}.csv > \
+#${WORKDIR}/generatedscripts/${PROJECT}_converted.csv
 
 sh $EBROOTMOLGENISMINCOMPUTE/molgenis_compute.sh \
--p ${WORKDIR}/generatedscripts/${PROJECT}/run${RUNNUMBER}/parameters_converted.csv \
--p ${WORKDIR}/generatedscripts/${PROJECT}/run${RUNNUMBER}/${PROJECT}_converted.csv \
+-p ${WORKDIR}/generatedscripts/parameters_converted.csv \
+-p ${WORKDIR}/${PROJECT}.csv \
 -w ${WORKFLOW} \
+-header ${GITHUBDIR}/templates/slurm/header.ftl \
 -rundir ${WORKDIR}/Projects/${PROJECT}/run${RUNNUMBER}/jobs \
 -b slurm \
 -weave \
