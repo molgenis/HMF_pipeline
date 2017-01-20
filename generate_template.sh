@@ -16,8 +16,6 @@ then
      rm .compute.properties
 fi
 
-mkdir -p ${WORKDIR}/generatedscripts/
-
 if [ -f ${WORKDIR}/generatedscripts/parameters_converted.csv  ];
 then
         rm -rf ${WORKDIR}/generatedscripts/parameters_converted.csv
