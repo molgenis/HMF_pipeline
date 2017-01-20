@@ -21,23 +21,15 @@ then
         rm -rf ${WORKDIR}/generatedscripts/parameters_converted.csv
 fi
 
-if [ -f ${WORKDIR}/generatedscripts/${PROJECT}_converted.csv  ];
-then
-    rm -rf ${WORKDIR}/generatedscripts/${PROJECT}_converted.csv
-fi
-
 perl ${GITHUBDIR}/convertParametersGitToMolgenis.pl ${GITHUBDIR}/parameters.csv > \
 ${WORKDIR}/generatedscripts/parameters_converted.csv
 
-#perl ${GITHUBDIR}/convertParametersGitToMolgenis.pl ${WORKDIR}/${PROJECT}.csv > \
-#${WORKDIR}/generatedscripts/${PROJECT}_converted.csv
 
 sh $EBROOTMOLGENISMINCOMPUTE/molgenis_compute.sh \
 -p ${WORKDIR}/generatedscripts/parameters_converted.csv \
--p ${WORKDIR}/${PROJECT}.csv \
+-p ${WORKDIR}/generatedscripts/${PROJECT}.csv \
 -w ${WORKFLOW} \
--header ${GITHUBDIR}/templates/slurm/header.ftl \
--rundir ${WORKDIR}/Projects/${PROJECT}/run${RUNNUMBER}/jobs \
+-rundir ${WORKDIR}/projects/${PROJECT}/run${RUNNUMBER}/jobs \
 -b slurm \
 -weave \
 --generate
