@@ -1,0 +1,11 @@
+##Dirs
+githubDir,/home/umcg-mbenjamins/github/HMF_pipeline/
+dataDir,/apps/data/
+intermediateDir,/home/umcg-mbenjamins/HMF_Test/Intermediate_results/
+
+##MODULE VERSIONS
+gatkVersion,GATK/3.7-Java-1.8.0_74
+
+
+##References
+gatkReference,${dataDir}/GRC/GRCh37/Homo_sapiens.GRCh37.GATK.illumina.fasta
