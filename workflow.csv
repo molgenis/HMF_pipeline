@@ -1,2 +1,3 @@
 step,protocol,dependencies
 s01_SplitVcfFileBySample,protocols/SplitVcfFileBySample.sh,
+s02_ConcordanceCheck.sh,protocols/ConcordanceCheck.sh,s01_SplitVcfFileBySample
