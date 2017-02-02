@@ -1,14 +1,5 @@
 #MOLGENIS walltime=05:59:59 mem=10gb ppn=1
 
-#SBATCH --job-name=ConcordanceCheck
-#SBATCH --output=ConcordanceCheck.out
-#SBATCH --error=ConcordanceCheck.err
-#SBATCH --time=2:00:00
-#SBATCH --cpus-per-task 1
-#SBATCH --mem 15gb
-#SBATCH --nodes 1
-#SBATCH --open-mode=append
-
 ### Parameters
 #string arrayFile
 #string arrayID
@@ -112,8 +103,8 @@ else
 	sleep 3m
 
 	#Count how much SNP's are in original VCF and how much proceed for Concordance
-	wc -l ${intermediateDir}/${internalSampleID}.genotypeArray.vcf > ${intermediateDir}/originalSNPs.txt
-	wc -l ${intermediateDir}/${internalSampleID}.genotypeArray.ExonFiltered.HomozygousRefRemoved.vcf > ${intermediateDir}/SNPswichproceedtoConcordance.txt
+	wc -l ${intermediateDir}/${internalSampleID}.genotypeArray.vcf > ${intermediateDir}/${internalSampleID}.originalSNPs.txt
+	wc -l ${intermediateDir}/${internalSampleID}.genotypeArray.ExonFiltered.HomozygousRefRemoved.vcf > ${intermediateDir}/${internalSampleID}.SNPswichproceedtoConcordance.txt
 
         #Change Array VCF to same name as NGS VCF
         awk '{OFS="\t"}{if ($0 ~ "#CHROM" ){ print $1,$2,$3,$4,$5,$6,$7,$8,$9,"'${internalSampleID}'"} else {print $0}}' ${intermediateDir}/${internalSampleID}.genotypeArray.ExonFiltered.HomozygousRefRemoved.vcf  > ${intermediateDir}/${internalSampleID}.genotypeArray.ExonFiltered.HomozygousRefRemoved.FINAL.vcf

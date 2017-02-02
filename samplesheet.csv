@@ -1,2 +1,2 @@
-internalSampleID,project,inputVCF,
-SAMPLEID,PROJECT,INPUTVCF,
+internalSampleID,project,inputVCF,arrayFile,arrayID
+SAMPLEID,PROJECT,INPUTVCF,ARRAYFILE,ARRAYID,

@@ -1,0 +1,39 @@
+#MOLGENIS walltime=05:59:59 mem=5gb ppn=1
+
+#string intermediateDir
+#string concordanceResultsDir
+#string exomeVcfResultsDir
+#list internalSampleID
+
+#Create result directories
+
+mkdir -p ${concordanceResultsDir}
+mkdir -p ${exomeVcfResultsDir}
+
+
+#Copy Concordance Final results directory
+
+
+for i in ${internalSampleID[@]}
+do
+	echo "${i}"
+	echo "Copy Concordance Final Results to results directory.."
+	rsync -a ${intermediateDir}/${i}.GATK.VCF.Concordance.output.grp ${concordanceResultsDir}
+	rsync -a ${intermediateDir}/${i}.originalSNPs.txt ${concordanceResultsDir}
+	rsync -a ${intermediateDir}/${i}.originalSNPs.txt ${concordanceResultsDir}
+	rsync -a ${intermediateDir}/${i}.SNPswichproceedtoConcordance.txt ${concordanceResultsDir}
+done
+
+echo -e ".. finished Copying ConcordanceResults(1/2)\n"
+
+#Copy ExomeVCF's to results directory
+
+
+for i in ${internalSampleID[@]}
+do
+	echo "${i}"
+	echo "Copy Exoom VCF to results directory.."
+	rsync -a ${intermediateDir}/${i}.splitted.exoom.vcf ${exomeVcfResultsDir}
+done
+
+echo -e ".. finished Copying ExoomVCF's(2/2)\n"

@@ -6,9 +6,6 @@
 #string gatkVersion
 #string internalSampleID
 
-set -e
-set -u
-
 module load ${gatkVersion}
 module list
 
