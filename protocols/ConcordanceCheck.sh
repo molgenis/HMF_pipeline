@@ -13,7 +13,7 @@
 #string plink2Version
 #string bedToolsVersion
 #string bedToolsReference
-#string tabixVersion
+#string htsLibVersion
 #string reference1000G
 #string inputVCF
 #string internalSampleID
@@ -112,7 +112,7 @@ else
 
         #Making Array VCF index
 
-        module load ${tabixVersion}
+        module load ${htsLibVersion}
 	bgzip -c ${intermediateDir}/${internalSampleID}.genotypeArray.ExonFiltered.HomozygousRefRemoved.FINAL.vcf > ${intermediateDir}/${internalSampleID}.genotypeArray.ExonFiltered.HomozygousRefRemoved.FINAL.vcf.gz
         tabix -p vcf ${intermediateDir}/${internalSampleID}.genotypeArray.ExonFiltered.HomozygousRefRemoved.FINAL.vcf.gz
 
