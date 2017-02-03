@@ -27,8 +27,15 @@ mkdir -p ${exomeVcfResultsDir}
 
 #Copy Concordance Final results directory
 
+sampleID=()
 
-for i in ${internalSampleID[@]}
+for sample in "${internalSampleID[@]}"
+do
+	array_contains sampleID "${sample}" || sampleID+=("${sample}")
+done
+
+
+for i in ${sampleID[@]}
 do
 	echo "${i}"
 	echo "Copy Concordance Final Results to results directory.."
@@ -43,7 +50,7 @@ echo -e ".. finished Copying ConcordanceResults(1/2)\n"
 #Copy ExomeVCF's to results directory
 
 
-for i in ${internalSampleID[@]}
+for i in ${sampleID[@]}
 do
 	echo "${i}"
 	echo "Copy Exoom VCF to results directory.."
