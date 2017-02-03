@@ -1,2 +1,5 @@
 step,protocol,dependencies
 s01_SplitVcfFileBySample,protocols/SplitVcfFileBySample.sh,
+s02_ConcordanceCheck,protocols/ConcordanceCheck.sh,s01_SplitVcfFileBySample
+s03_MakeExomeVCF,protocols/MakeExomeVCF.sh,s02_ConcordanceCheck
+s04_CopyToResultDir,protocols/CopyToResultsDir.sh,s03_MakeExomeVCF
